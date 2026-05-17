@@ -7,11 +7,17 @@ export interface AnalysisResult {
   suspiciousWords: string[];
 }
 
-export async function analyzeNews(textOrUrl: string): Promise<AnalysisResult> {
+export async function analyzeNews(
+  textOrUrl: string
+): Promise<AnalysisResult> {
   const prompt = `
 Analyze the following news/text and determine whether it is fake or real.
 
-Return JSON in this format:
+Return ONLY valid raw JSON.
+Do not use markdown.
+Do not use triple backticks.
+
+Format:
 {
   "isFake": boolean,
   "confidence": number,
@@ -46,16 +52,21 @@ ${textOrUrl}
 
   const data = await response.json();
 
-  const text =
+  const rawText =
     data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
 
+  const cleanedText = rawText
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
+
   try {
-    return JSON.parse(text);
+    return JSON.parse(cleanedText);
   } catch {
     return {
       isFake: false,
       confidence: 50,
-      explanation: text,
+      explanation: cleanedText,
       suspiciousWords: [],
     };
   }
@@ -64,7 +75,9 @@ ${textOrUrl}
 export async function chatWithAssistant(
   messages: { role: "user" | "model"; text: string }[]
 ) {
-  const prompt = messages.map(m => `${m.role}: ${m.text}`).join("\n");
+  const prompt = messages
+    .map((m) => `${m.role}: ${m.text}`)
+    .join("\n");
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
