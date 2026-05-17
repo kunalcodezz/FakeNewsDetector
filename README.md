@@ -1,20 +1,71 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Fake News Detector 
 
-# Run and deploy your AI Studio app
+A web-based Fake News Detection application that analyzes news headlines or articles and predicts whether the news is **Real** or **Fake** using AI/ML techniques.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/7c84bb1d-5691-4787-9e66-6a5de4d28320
+## Features
 
-## Run Locally
+- Detects fake and real news articles
+- Clean and responsive UI
+- Fast prediction system
+- User-friendly interface
+- AI-powered text analysis
+- Firebase integration for authentication/database
 
-**Prerequisites:**  Node.js
+---
 
+## Tech Stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Frontend
+- HTML
+- CSS
+- JavaScript
+- React
+- TypeScript
+- Vite
+
+### Backend / Services
+- Firebase
+
+### AI / ML
+- Fake news prediction model/API
+
+---
+
+## 📂 Project Structure
+```bash
+ForensicObserver/
+│
+├── src/
+│   ├── components/
+│   │   ├── ChatWidget.tsx
+│   │   └── Layout.tsx
+│   │
+│   ├── context/
+│   │   └── AuthContext.tsx
+│   │
+│   ├── pages/
+│   │   ├── Dashboard.tsx
+│   │   ├── History.tsx
+│   │   ├── Home.tsx
+│   │   └── Login.tsx
+│   │
+│   ├── services/
+│   │   ├── ai.ts
+│   │   └── db.ts
+│   │
+│   ├── lib/
+│   │   └── utils.ts
+│   │
+│   ├── firebase.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+│
+├── public/
+├── .env.example
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+└── README.md
