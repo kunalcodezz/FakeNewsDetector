@@ -1,0 +1,6 @@
+{
+  "name": "Forensic Observer",
+  "description": "AI-powered platform that detects fake news from text or URLs and provides explanations, history tracking, and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
